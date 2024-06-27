@@ -1,14 +1,13 @@
 'use client';
 
-import React from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
+import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 
 
 export default function login() {
 
-  function passwordType(value: string) {
-    console.log(value);
-  }
+  const [passwordVisible, setPasswordVisbile] = useState(false);
 
   return (
     <main className='h-screen flex justify-center items-center'>
@@ -29,9 +28,21 @@ export default function login() {
                         alt='lock password icon'
                         className='absolute top-[10px] left-3'
                     />
-                    <input className='py-[10px] w-full pl-10 shadow-md text-sm ' type="password" name="password" id="password" placeholder='Mot de passe' />
+                    <input 
+                      className='py-[10px] w-full pl-10 shadow-md text-sm ' 
+                      type={passwordVisible ? "text" : "password"} 
+                      name="password" 
+                      id="password" 
+                      placeholder='Mot de passe' />
+                    {
+                      passwordVisible 
+                      ? 
+                      <FaRegEye onClick={() => setPasswordVisbile(false)} className='absolute top-[10px] right-3' /> 
+                      : 
+                      <FaRegEyeSlash onClick={() => setPasswordVisbile(true)} className='absolute top-[10px] right-3' />
+                    }
                 </div>
-                <input onChange={(e) => passwordType(e.target.value)} type="submit" value="Se connecter" className='py-2 w-full text-center bg-black text-white cursor-pointer hover:bg-gray-800  transition-all duration-200'/>
+                <input type="submit" value="Se connecter" className='py-2 w-full text-center bg-black text-white cursor-pointer hover:bg-gray-800  transition-all duration-200'/>
             </form>
         </div>
     </main>
