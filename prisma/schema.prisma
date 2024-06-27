@@ -1,0 +1,26 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+
+model wiigames {
+  id  String  @id
+  title String
+  day Int
+  month Int
+  year Int
+  genre String
+  developer String
+  synopsis String
+  owned Boolean
+  wish Boolean
+  owned_when DateTime?
+}
