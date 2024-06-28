@@ -1,26 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import { AddRemButton } from '../buttons/addRemButton'
 import { State } from './state'
 import { WishButton } from '../buttons/wishButton'
 
 export const GameCard = (props: any) => {
+
+  const [showFullDescription, setShowFullDescription] = useState(false);
+
+  let synopsis = props.synopsis
+
+  if(!showFullDescription){
+    synopsis = synopsis.substring(0, 300) + '...';
+  }
+
   return (
-    <div className='flex gap-5 shadow-lg border border-gray-200 p-5 w-full rounded-xl'>
-        <div>
+    <div className='flex flex-col sm:flex-row gap-5 shadow-lg border border-gray-200 p-5 w-full rounded-xl'>
+        <div className='sm:block flex justify-center'>
             <Image 
-                src="/images/cover_not_found.png"
-                width={1000}
-                height={1000}
+                src={`/images/covers/${props.id}.png`}
+                width={200}
+                height={200}
                 alt='Wii game cover'
             />
         </div>
-        <div className="flex flex-col gap-5">
-            <div className="flex justify-between">
+        <div className="flex flex-col gap-5 w-full">
+            <div className="flex flex-col sm:flex-row justify-between">
                 <h3 className="font-bold text-2xl">{ props.title }</h3>
-                <div className="flex flex-col gap-1 font-bold">
+                <div className="flex flex-col gap-1 font-bold my-3 sm:my-0">
                     <p className='text-xl'>Dans la collection</p>
-                    <p className='self-end'>{props.owned ? <State status="yes" /> : <State status="no" />}</p>
+                    <p className='self-start sm:self-end'>{props.owned ? <State status="yes" /> : <State status="no" />}</p>
                 </div>
             </div>
             <div className="flex flex-col gap-2 font-semibold">
@@ -30,7 +39,7 @@ export const GameCard = (props: any) => {
             </div>
             <div>
                 <p className="font-semibold mb-2">Synopsis :</p>
-                <p>{ props.synopsis }</p>
+                <p>{ synopsis }</p>
             </div>
             <hr />
             <div className="flex gap-3 justify-end">

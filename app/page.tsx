@@ -23,7 +23,9 @@ export default function Home() {
 
   return (
     <main className="flex justify-center">
-      {session ? <Dashboard /> : <Login />}
+      {session ? 
+      <main className="flex justify-center"><Dashboard /></main> 
+      : <main className="h-screen flex justify-center items-center"><Login /></main> }
     </main>
   );
 }
