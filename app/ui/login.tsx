@@ -20,7 +20,7 @@ export default function Login() {
         setError('Champ du mot de passe vide.')
         return;
     }
-    
+
     const result = await signIn('credentials', {
       password: formData.get('password'),
       redirect: false
@@ -40,7 +40,7 @@ export default function Login() {
   return (
     <div className="px-10 mx-5 py-6 bg-white shadow-md flex flex-col gap-3 items-center">
         <Image 
-            src="/logo.png"
+            src="/images/logo.png"
             width={130}
             height={130}
             alt='WiiList logo'
@@ -49,7 +49,7 @@ export default function Login() {
         <form action="" className='mt-5 w-full sm:w-72' onSubmit={handleFormSubmit}>
             <div className="relative border shadow-sm">
                 <Image 
-                    src="/lock.svg"
+                    src="/images/lock.svg"
                     width={20}
                     height={20}
                     alt='lock password icon'

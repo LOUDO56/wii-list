@@ -2,7 +2,7 @@
 
 import { useSession } from "next-auth/react";
 import Login from "./ui/login";
-import Dashboard from "./ui/dashboard";
+import Dashboard from "./ui/dashboard/dashboard";
 
 export default function Home() {
   const { data: session, status } = useSession();
@@ -22,7 +22,7 @@ export default function Home() {
   }
 
   return (
-    <main className="h-screen flex justify-center items-center">
+    <main className="flex justify-center">
       {session ? <Dashboard /> : <Login />}
     </main>
   );
