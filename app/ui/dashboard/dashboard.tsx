@@ -7,10 +7,7 @@ import { GameCard } from "./gameCard";
 import { fetchGames } from "@/lib/data";
 
 
-export default async function Dashboard(){
-
-    const games = await fetchGames();
-    console.log(games);
+export default function Dashboard(){
 
     return (
         <div className="bg-white max-w-[65em] px-3 sm:px-8 py-5">

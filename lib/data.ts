@@ -6,8 +6,11 @@ export async function fetchGames(){
     return games;
 }
 
-export async function isConnected(){
-    const { data: session, status } = useSession();
-    if(!session) return false
-    return true;
+export async function fetchGameInfo(gameId: string){
+    const gameInfo = await db.wiigames.findUnique({
+        where: {
+            id: gameId
+        }
+    });
+    return gameInfo;
 }
