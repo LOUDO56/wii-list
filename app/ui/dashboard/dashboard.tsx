@@ -3,11 +3,12 @@
 import Image from "next/image";
 import { Search } from "./search";
 import { Filter } from "./filter";
-import { GameCard } from "./gameCard";
-import { fetchGames } from "@/lib/data";
+import { GameCardContainer } from "./gameCardContainer";
 
 
 export default function Dashboard(){
+
+    
 
     return (
         <div className="bg-white max-w-[65em] px-3 sm:px-8 py-5">
@@ -23,9 +24,7 @@ export default function Dashboard(){
             </div>
             <div className="flex flex-col gap-5">
                 <Filter />
-                <div className="flex flex-col gap-10">
-                    
-                </div>
+                <GameCardContainer />
             </div>
         </div>
     )
