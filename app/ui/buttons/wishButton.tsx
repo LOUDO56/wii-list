@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FaHeart, FaRegHeart } from 'react-icons/fa'
 
 export const WishButton = (props : any) => {
-  const icon = props.type === "add" ? <FaRegHeart size={20}/> : <FaHeart size={20} className='text-red-500'/>
+
+  const [wished, setWished] = useState(false);
+
+  const icon = props.type === "add" ? <FaRegHeart size={20} /> : <FaHeart size={20} className={`text-red-500 ${wished ? "animate-wish" : ''}`} />
   const method = props.type === "add" ? "PUT" : "DELETE";
+  const toAdd = props.type === "add" ? true : false;
 
   async function actionGameWish(){
     const res = await fetch(`/api/game/${props.gameId}`, {
@@ -15,6 +19,7 @@ export const WishButton = (props : any) => {
     })
     if(res.ok){
       props.handleClick();
+      setWished(toAdd);
     }
   }
   

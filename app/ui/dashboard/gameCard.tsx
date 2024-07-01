@@ -9,6 +9,7 @@ export const GameCard = (props: any) => {
   const [showFullDescription, setShowFullDescription] = useState(false);
   const [gameOnList, setGameOnList] = useState(props.owned);
   const [gameOnWish, setGameOnWish] = useState(props.wish);
+  const [wished, setWished] = useState(false);
 
   let synopsis = props.synopsis
   const maxCharacterDesc = 430;
@@ -60,32 +61,17 @@ export const GameCard = (props: any) => {
             </div>
             <hr />
             <div className="flex gap-3 justify-end">
-                {gameOnWish ? 
                 <WishButton 
-                    type="remove" 
+                    type={gameOnWish ? "remove" : "add"}
                     gameId={props.id} 
-                    handleClick={() => { setGameOnWish(false) }}
+                    handleClick={() => { setGameOnWish(!gameOnWish) }}
                 /> 
-                : 
-                <WishButton 
-                    type="add" 
-                    gameId={props.id}
-                    handleClick={() => { setGameOnWish(true) }}
-                />}
-
-                {gameOnList ? 
                 <AddRemButton 
-                    type="remove" 
+                    type={gameOnList ? "remove" : "add"}
                     gameId={props.id}
-                    handleClick={() => { setGameOnList(false) }}
-                /> 
-                : 
-                <AddRemButton 
-                    type="add" 
-                    gameId={props.id}  
-                    handleClick={() => { setGameOnList(true) }}
+                    handleClick={() => { setGameOnList(!gameOnList) }}
                     removeWish={() => { setGameOnWish(false) }}
-                />}
+                /> 
 
             </div>
         </div>

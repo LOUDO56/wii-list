@@ -15,6 +15,16 @@ const config: Config = {
       },
       colors:{
         'pink': '#E4D8E5'
+      },
+      animation: {
+        'wish': 'wish 300ms ease-out 1'
+      },
+      keyframes: {
+        wish: {
+          '0%': { transform: 'scale(0.8)' },
+          '40%': { transform: 'scale(1.2)' },
+          '100%': { transform: 'scale(1)' },
+        }
       }
     },
   },
