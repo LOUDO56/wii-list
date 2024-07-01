@@ -1,14 +1,17 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 import { AddRemButton } from '../buttons/addRemButton'
-import { State } from './state'
 import { WishButton } from '../buttons/wishButton'
+import { State } from './state'
+import dateFormat from 'dateformat'
+
 
 export const GameCard = (props: any) => {
 
   const [showFullDescription, setShowFullDescription] = useState(false);
   const [gameOnList, setGameOnList] = useState(props.owned);
   const [gameOnWish, setGameOnWish] = useState(props.wish);
+  const [ownedWhen, setOwnedWhen] = useState(dateFormat(new Date(props.owned_when), 'dd/mm/yy à HH:MM'));
 
   let synopsis = props.synopsis
   const maxCharacterDesc = 300;
@@ -59,18 +62,30 @@ export const GameCard = (props: any) => {
             }
             </div>
             <hr />
-            <div className="flex gap-3 justify-end">
-                <WishButton 
-                    type={gameOnWish ? "remove" : "add"}
-                    gameId={props.id} 
-                    handleClick={() => { setGameOnWish(!gameOnWish) }}
-                /> 
-                <AddRemButton 
-                    type={gameOnList ? "remove" : "add"}
-                    gameId={props.id}
-                    handleClick={() => { setGameOnList(!gameOnList) }}
-                    removeWish={() => { setGameOnWish(false) }}
-                /> 
+            <div className="flex justify-between">
+                <div className='text-gray-400'>
+                    {gameOnList ? `Ajouté le: ${ownedWhen}` : ""}
+                </div>
+                <div className='flex gap-3'>
+                    {!gameOnList ?  
+                        <WishButton 
+                            type={gameOnWish ? "remove" : "add"}
+                            gameId={props.id} 
+                            handleClick={() => { setGameOnWish(!gameOnWish) }}
+                        /> 
+                        :
+                        ""
+                    }
+                    <AddRemButton 
+                        type={gameOnList ? "remove" : "add"}
+                        gameId={props.id}
+                        handleClick={() => { 
+                            setGameOnList(!gameOnList)
+                            setOwnedWhen(dateFormat(new Date(), 'dd/mm/yy à HH:MM'))
+                        }}
+                        removeWish={() => { setGameOnWish(false) }}
+                    /> 
+                </div>
 
             </div>
         </div>

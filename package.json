@@ -12,6 +12,7 @@
   "dependencies": {
     "@prisma/client": "5.16.0",
     "clsx": "^2.1.1",
+    "dateformat": "^5.0.3",
     "next": "14.2.4",
     "next-auth": "^4.24.7",
     "react": "^18",
@@ -21,6 +22,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@types/dateformat": "^5.0.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

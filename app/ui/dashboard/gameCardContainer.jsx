@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { GameCard } from './gameCard';
 import { GameCardSkeleton } from '../loading/gameCardSkeleton';
 import ReactPaginate from 'react-paginate';
+import dateFormat from 'dateformat';
+
 
 export const GameCardContainer = ({search}) => {
 
