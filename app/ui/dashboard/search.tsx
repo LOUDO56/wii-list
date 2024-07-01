@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import Image from 'next/image'
 import { IoIosSearch } from 'react-icons/io'
 
-export const Search = () => {
+export const Search = (props : any) => {
   return (
     <form action="" className='mt-5 mb-8 flex flex-col sm:flex-row gap-3 w-full sm:w-auto'>
         <div className="relative border shadow-sm">
@@ -18,9 +18,9 @@ export const Search = () => {
                 placeholder='Rechercher un jeu'
                 className='py-3 pl-10 shadow-md border border-transparent transition-all duration-200 text-sm w-full sm:w-[30em] focus:border-blue-400 outline-none'
                 autoComplete='off'
+                onChange={(e) => {props.setSearch(e.target.value)}}
             />
         </div>
-        <button className="button self-center">Rechercher</button>
     </form>
   )
 }

@@ -3,7 +3,6 @@ import db from "./db"
 
 export async function fetchGames(){
     const games = await db.wiigames.findMany({
-        take: 10,
         orderBy: [
             {
                 title: "asc"

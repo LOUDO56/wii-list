@@ -9,10 +9,9 @@ export const GameCard = (props: any) => {
   const [showFullDescription, setShowFullDescription] = useState(false);
   const [gameOnList, setGameOnList] = useState(props.owned);
   const [gameOnWish, setGameOnWish] = useState(props.wish);
-  const [wished, setWished] = useState(false);
 
   let synopsis = props.synopsis
-  const maxCharacterDesc = 430;
+  const maxCharacterDesc = 300;
 
   synopsis = synopsis.replaceAll("\\n", "\n");
   synopsis = synopsis.replaceAll("\\r", "");
@@ -23,7 +22,7 @@ export const GameCard = (props: any) => {
   }
 
   return (
-    <div className='flex flex-col sm:flex-row gap-5 shadow-lg border border-gray-200 p-5 w-full rounded-xl'>
+    <div className='flex flex-col sm:flex-row gap-5 shadow-lg border border-gray-200 p-5 rounded-xl'>
         <div className='sm:block flex justify-center'>
             <Image 
                 src={`/images/covers/${props.id}.png`}
@@ -35,9 +34,9 @@ export const GameCard = (props: any) => {
         </div>
         <div className="flex flex-col gap-5 w-full">
             <div className="flex flex-col sm:flex-row justify-between">
-                <h3 className="font-bold text-xl sm:text-2xl w-[37rem]">{ props.title }</h3>
+                <h3 className="font-bold text-xl sm:text-2xl w-auto sm:max-w-[37rem]">{ props.title }</h3>
                 <div className="flex flex-col gap-1 font-bold my-3 sm:my-0">
-                    <p className='text-lg sm:text-xl'>Dans la collection</p>
+                    <p className='text-lg sm:text-xl text-left sm:text-right'>Dans la collection</p>
                     <p className='self-start sm:self-end'>{gameOnList ? <State status="yes" /> : <State status="no" />}</p>
                 </div>
             </div>
