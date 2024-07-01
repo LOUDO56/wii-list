@@ -5,12 +5,14 @@ import ReactPaginate from 'react-paginate';
 import dateFormat from 'dateformat';
 
 
-export const GameCardContainer = ({search}) => {
+export const GameCardContainer = ({search, filter}) => {
 
   let [games, setGames] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const onMobile = window.innerWidth < 658;
+
+  console.log(filter)
 
   const keyWords = search.split(" ");
   games = games.filter((game) => {
@@ -30,7 +32,7 @@ export const GameCardContainer = ({search}) => {
   useEffect(() => { 
       const fetchedGames = async () => {
         try {
-            const res = await fetch('/api/games')
+            const res = await fetch(`/api/games?filter=${filter}`)
             const data = await res.json()
             setGames(data);
         } catch (error) {
