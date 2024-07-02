@@ -1,5 +1,6 @@
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import bcrypt from 'bcrypt';
 
 export const authOptions: NextAuthOptions = {
     providers: [
@@ -12,9 +13,10 @@ export const authOptions: NextAuthOptions = {
                 if (!credentials) return null;
                 const user = { id: "1", name: "Anonymous" };
 
-                const password = process.env.PASSWORD;
+                const password = process.env.PASSWORD as string;
+                const match = await bcrypt.compare(credentials?.password, password);
                 
-                if (password !== credentials?.password) return null;
+                if (!match) return null;
                 
                 return user;
             } 
