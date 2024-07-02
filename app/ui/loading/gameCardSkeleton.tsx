@@ -6,9 +6,9 @@ import { WishButton } from '../buttons/wishButton'
 
 export const GameCardSkeleton = () => {
   return (
-    <div className='flex flex-col sm:flex-row gap-5 shadow-lg border border-gray-200 p-5 rounded-xl'>
+    <div className='flex flex-col sm:flex-row gap-5 shadow-lg border bg-white border-gray-200 p-5 rounded-xl'>
         <div className='sm:block flex justify-center'>
-            <div className="w-[170px] h-[250px] bg-gray-200 rounded-xl animate-pulse"></div>
+            <div className="w-[140px] h-[200px] bg-gray-200 rounded-xl animate-pulse"></div>
         </div>
         <div className="flex flex-col gap-5 w-full">
             <div className="flex flex-col sm:flex-row justify-between">

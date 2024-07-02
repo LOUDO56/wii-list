@@ -4,6 +4,7 @@ import { GameCardSkeleton } from '../loading/gameCardSkeleton';
 import ReactPaginate from 'react-paginate';
 import { MdArrowBackIos, MdArrowForwardIos } from 'react-icons/md';
 import { Filter } from './filter';
+import { setTimeout } from 'timers';
 
 
 export const GameCardContainer = ({search}) => {
@@ -105,7 +106,7 @@ export const GameCardContainer = ({search}) => {
             pageCount={pageCount}
             previousLabel={<MdArrowBackIos size={20} />}
             renderOnZeroPageCount={null}
-            className='flex flex-wrap gap-2 justify-center items-center sm:p-2 p-5 border border-gray-300 rounded-xl w-full text-base sm:text-lg'
+            className='flex flex-wrap gap-2 justify-center items-center sm:p-2 p-5 bg-white border border-gray-300 rounded-xl w-full text-base sm:text-lg'
             pageLinkClassName='px-2 sm:px-5 py-2 bg-gray-100 rounded-lg'
             breakLinkClassName='px-2 sm:px-5 py-2 bg-gray-100 rounded-lg'
             nextClassName='p-1 sm:p-5'
