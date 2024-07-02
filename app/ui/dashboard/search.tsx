@@ -22,7 +22,7 @@ export const Search = (props : any) => {
                 name="search" 
                 id="search" 
                 placeholder='Rechercher un jeu'
-                className='py-3 pl-10 shadow-md border border-transparent transition-all duration-200 text-sm w-full sm:w-[30em] focus:border-blue-400 outline-none'
+                className='py-3 pl-12 shadow-md border border-transparent transition-all duration-200 text-sm w-full sm:w-[40em] focus:border-blue-400 outline-none'
                 autoComplete='off'
                 onChange={(e) => {handleSearch(e.target.value)}}
             />
