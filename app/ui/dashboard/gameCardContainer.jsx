@@ -33,7 +33,10 @@ export const GameCardContainer = ({search}) => {
       try {
           const res = await fetch(`/api/games?filter=${filter}`)
           const data = await res.json()
-          console.log(data);
+          if(filter === "all-games"){
+            const countGameElement = document.getElementById('maxGame');
+            countGameElement.textContent = data.length;
+          }
           setGames(data);
       } catch (error) {
           console.log("Error when fetching games" + error);

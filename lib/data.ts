@@ -1,4 +1,3 @@
-import { useSession } from "next-auth/react";
 import db from "./db"
 
 export async function fetchGames(){
@@ -11,6 +10,16 @@ export async function fetchGames(){
     });
     return games;
 }
+
+export async function fetchCountOwnedGames(){
+    const gameCount = await db.wiigames.count({
+        where: {
+            owned: true
+        }
+    });
+    return gameCount;
+}
+
 
 export async function fetchOwnedGames(){
     const games = await db.wiigames.findMany({

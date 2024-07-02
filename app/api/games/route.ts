@@ -1,5 +1,5 @@
 import { isConnected } from "@/lib/actions";
-import { fetchGames, fetchOwnedGames, fetchRecentAddedGames, fetchUnownedGames, fetchWishGames } from "@/lib/data";
+import { fetchCountOwnedGames, fetchGames, fetchOwnedGames, fetchRecentAddedGames, fetchUnownedGames, fetchWishGames } from "@/lib/data";
 
 export async function GET(req: Request) {
     const connected = await isConnected();
@@ -14,6 +14,11 @@ export async function GET(req: Request) {
     const url = new URL(req.url);
     const searchParams = new URLSearchParams(url.searchParams);
     const filter = searchParams.get('filter');
+    const count = searchParams.get('count');
+    if(count){
+        const countGame = await fetchCountOwnedGames();
+        return new Response(countGame.toString());
+    }
     let games;
     switch(filter){
         case "all-games":
