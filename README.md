@@ -1,5 +1,16 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Env Template
+
+```env
+NODE_ENV="developement"
+
+DATABASE_URL="file:./lib/wiigames.db"
+PASSWORD="" # Bcrypt hash password
+
+NEXTAUTH_SECRET=""
+```
+
 ## Getting Started
 
 First, run the development server:
