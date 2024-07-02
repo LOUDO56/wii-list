@@ -3,7 +3,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Env Template
 
 ```env
-NODE_ENV="developement"
+NODE_ENV="developement" # or "production"
 
 DATABASE_URL="file:./lib/wiigames.db"
 PASSWORD="" # Bcrypt hash password
