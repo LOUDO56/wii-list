@@ -23,7 +23,7 @@ export default function Dashboard(){
     }, [])
 
     return (
-        <div className="bg-white bg-opacity-80 px-3 sm:px-8 py-5 w-full">
+        <div className="bg-white sm:bg-opacity-80 bg-opacity-60 px-3 sm:px-8 py-5 w-full">
             <div className="flex flex-col items-center gap-3">
                 <Image 
                     src="/images/logo.png"

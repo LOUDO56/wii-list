@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <SessionWrapper>
       <html lang="en">
-        <body className={`${roboto.className} bg-botw bg-fixed bg-no-repeat`}>{children}</body>
+        <body className={`${roboto.className} bg-botw-mobile bg-cover sm:bg-botw-pc bg-fixed bg-no-repeat`}>{children}</body>
       </html>
     </SessionWrapper>
   );

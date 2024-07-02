@@ -5,6 +5,7 @@ import ReactPaginate from 'react-paginate';
 import { MdArrowBackIos, MdArrowForwardIos } from 'react-icons/md';
 import { Filter } from './filter';
 import { setTimeout } from 'timers';
+import clsx from 'clsx';
 
 
 export const GameCardContainer = ({search}) => {
@@ -27,6 +28,9 @@ export const GameCardContainer = ({search}) => {
         search === game.title.toLowerCase()
     )
   })
+
+  if(games.length === 0) document.body.classList.add('overflow-hidden');
+  else document.body.classList.remove('overflow-hidden')
 
   const maxGameOnePage = onMobile ? 7 : 10;
   
@@ -122,7 +126,12 @@ export const GameCardContainer = ({search}) => {
   
   
   return (
-    <div className="flex flex-col gap-10 w-full">
+    <div className={clsx(
+      'flex flex-col gap-10 w-full',
+      {
+        'h-screen': games.length === 0
+      }
+    )}>
        <Filter fetchGames={fetchGames} />
        { games.length === 0 && !loading ?
         <p className='text-center text-2xl font-semibold'>Aucun résultat</p>
