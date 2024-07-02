@@ -13,6 +13,7 @@ export const GameCardContainer = ({search}) => {
 
   const onMobile = window.innerWidth < 658;
 
+  search = search.toLowerCase();
   const keyWords = search.split(" ");
   games = games.filter((game) => {
     let titleGame = game.title
@@ -22,7 +23,7 @@ export const GameCardContainer = ({search}) => {
     return (
         keyWords.every((keyWord) => titleGame.includes(keyWord)) ||
         game.id.toLowerCase() === search ||
-        search.toLowerCase() === game.title.toLowerCase()
+        search === game.title.toLowerCase()
     )
   })
 

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Search } from "./search";
 import { GameCardContainer } from "./gameCardContainer";
 import { useEffect, useState } from "react";
+import { FindIdGame } from "../buttons/findIdGame";
 
 
 export default function Dashboard(){
@@ -34,6 +35,7 @@ export default function Dashboard(){
                 <Search setSearch={setSearch}/>
             </div>
             <div className="flex flex-col gap-5">
+                <FindIdGame search={search} />
                 <GameCardContainer search={search} />
             </div>
         </div>
