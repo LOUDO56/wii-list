@@ -58,7 +58,7 @@ export const GameCardContainer = ({search}) => {
                     <GameCardSkeleton key={index} />
                 ))
             ) : (
-                currentItems.map((game) => (
+                currentItems.map((game, index) => (
                 <GameCard
                     key={game.id}
                     id={game.id}
@@ -72,6 +72,8 @@ export const GameCardContainer = ({search}) => {
                     owned={game.owned}
                     wish={game.wish}
                     owned_when={game.owned_when}
+                    games={games}
+                    index={index}
                 />
                 ))
             )

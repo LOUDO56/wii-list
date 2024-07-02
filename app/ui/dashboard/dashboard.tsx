@@ -2,10 +2,8 @@
 
 import Image from "next/image";
 import { Search } from "./search";
-import { Filter } from "./filter";
 import { GameCardContainer } from "./gameCardContainer";
 import { useEffect, useState } from "react";
-import { fetchCountOwnedGames } from "@/lib/data";
 
 
 export default function Dashboard(){
@@ -32,7 +30,7 @@ export default function Dashboard(){
                     height={200}
                     alt="Logo wii list"
                 />
-                <p className='font-medium text-lg'>J'ai <span id="currentOwnedGames">{countGame}</span> jeux sur <span id="maxGame">0</span> en tout !</p>
+                <span className='font-medium text-lg'>J&apos;ai <span id="currentOwnedGames">{countGame}</span> jeux sur <span id="maxGame">0</span> en tout !</span>
                 <Search setSearch={setSearch}/>
             </div>
             <div className="flex flex-col gap-5">

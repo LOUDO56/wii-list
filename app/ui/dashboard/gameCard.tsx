@@ -78,6 +78,8 @@ export const GameCard = (props: any) => {
                             type={gameOnWish ? "remove" : "add"}
                             gameId={props.id} 
                             handleClick={() => { setGameOnWish(!gameOnWish) }}
+                            games={props.games}
+                            index={props.index}
                         /> 
                         :
                         ""
@@ -90,6 +92,8 @@ export const GameCard = (props: any) => {
                             setOwnedWhen(dateFormat(new Date(), 'dd/mm/yy à HH:MM'))
                         }}
                         removeWish={() => { setGameOnWish(false) }}
+                        games={props.games}
+                        index={props.index}
                     /> 
                 </div>
 
