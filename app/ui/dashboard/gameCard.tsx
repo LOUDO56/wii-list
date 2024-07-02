@@ -25,7 +25,7 @@ export const GameCard = (props: any) => {
   }
 
   return (
-    <div className='flex flex-col sm:flex-row gap-5 shadow-lg border border-gray-200 p-5 rounded-xl'>
+    <div className='flex flex-col sm:flex-row gap-5 shadow-lg border border-gray-200 p-5 rounded-xl' id={props.id}>
         <div className='sm:block flex justify-center'>
             <Image 
                 src={`/images/covers/${props.id}.png`}

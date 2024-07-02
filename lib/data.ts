@@ -63,7 +63,7 @@ export async function fetchRecentAddedGames(){
         },
         orderBy: [
             {
-                owned_when: "asc"
+                owned_when: "desc"
             }
         ]
     });

@@ -22,7 +22,7 @@ export const WishButton = (props : any) => {
       setWished(toAdd);
     }
   }
-  
+
   return (
     <button className='button' onClick={actionGameWish}>
         {icon}

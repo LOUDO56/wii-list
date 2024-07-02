@@ -26,7 +26,8 @@ export async function removeGame(gameId: string) {
             id: gameId
         },
         data: {
-            owned: false
+            owned: false,
+            owned_when: null,
         }
     })
 }

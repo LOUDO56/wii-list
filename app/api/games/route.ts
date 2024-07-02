@@ -1,5 +1,5 @@
 import { isConnected } from "@/lib/actions";
-import { fetchGames, fetchOwnedGames, fetchUnownedGames, fetchWishGames } from "@/lib/data";
+import { fetchGames, fetchOwnedGames, fetchRecentAddedGames, fetchUnownedGames, fetchWishGames } from "@/lib/data";
 
 export async function GET(req: Request) {
     const connected = await isConnected();
@@ -29,7 +29,7 @@ export async function GET(req: Request) {
             games = await fetchWishGames();
             break;
         case "recent-games":
-            games = await fetchWishGames();
+            games = await fetchRecentAddedGames();
             break;
         default:
             games = await fetchGames();

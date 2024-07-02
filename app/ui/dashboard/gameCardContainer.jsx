@@ -2,17 +2,16 @@ import React, { useEffect, useState } from 'react'
 import { GameCard } from './gameCard';
 import { GameCardSkeleton } from '../loading/gameCardSkeleton';
 import ReactPaginate from 'react-paginate';
-import dateFormat from 'dateformat';
+import { MdArrowBackIos, MdArrowForwardIos } from 'react-icons/md';
+import { Filter } from './filter';
 
 
-export const GameCardContainer = ({search, filter}) => {
+export const GameCardContainer = ({search}) => {
 
   let [games, setGames] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const onMobile = window.innerWidth < 658;
-
-  console.log(filter)
 
   const keyWords = search.split(" ");
   games = games.filter((game) => {
@@ -29,20 +28,22 @@ export const GameCardContainer = ({search, filter}) => {
 
   const maxGameOnePage = onMobile ? 7 : 10;
   
-  useEffect(() => { 
-      const fetchedGames = async () => {
-        try {
-            const res = await fetch(`/api/games?filter=${filter}`)
-            const data = await res.json()
-            setGames(data);
-        } catch (error) {
-            console.log("Error when fetching games" + error);
-        } finally {
-            setLoading(false);
-        }
-    }
-    fetchedGames();
+  const fetchGames = async (filter) => {
+      setLoading(true)
+      try {
+          const res = await fetch(`/api/games?filter=${filter}`)
+          const data = await res.json()
+          console.log(data);
+          setGames(data);
+      } catch (error) {
+          console.log("Error when fetching games" + error);
+      } finally {
+          setLoading(false);
+      }
+  }
 
+  useEffect(() => { 
+    fetchGames("all-games");
   }, [])
 
   function Items({ currentItems }) {
@@ -88,22 +89,26 @@ export const GameCardContainer = ({search, filter}) => {
   
     return (
       <>
+        <Items currentItems={currentItems} />    
         <ReactPaginate
             breakLabel="..."
-            nextLabel=">"
+            nextLabel={<MdArrowForwardIos size={20} />}
             onPageChange={handlePageClick}
             pageRangeDisplayed={onMobile ? 2 : 5}
             marginPagesDisplayed={onMobile ? 1 : 2}
             pageCount={pageCount}
-            previousLabel="<"
+            previousLabel={<MdArrowBackIos size={20} />}
             renderOnZeroPageCount={null}
-            className='flex gap-2 justify-center items-center p-2 border border-gray-300 rounded-xl w-full text-base sm:text-lg'
-            pageClassName='px-2 sm:px-5 py-2'
-            nextLinkClassName='p-5'
-            previousLinkClassName='p-5'
-            activeClassName='text-white bg-black rounded-lg'
+            className='flex flex-wrap gap-2 justify-center items-center sm:p-2 p-5 border border-gray-300 rounded-xl w-full text-base sm:text-lg'
+            pageLinkClassName='px-2 sm:px-5 py-2 bg-gray-100 rounded-lg'
+            breakLinkClassName='px-2 sm:px-5 py-2 bg-gray-100 rounded-lg'
+            nextClassName='p-1 sm:p-5'
+            previousClassName='p-1 sm:p-5'
+            nextClassLinkName='p-1 sm:p-5'
+            previousClassLinkName='p-1 sm:p-5'
+            activeLinkClassName='text-white !bg-black'
+            onClick={() => window.scrollTo({top: 0})}
         />
-        <Items currentItems={currentItems} />    
       </>
     );
   }
@@ -111,6 +116,7 @@ export const GameCardContainer = ({search, filter}) => {
   
   return (
     <div className="flex flex-col gap-10 w-full">
+       <Filter fetchGames={fetchGames} />
        { games.length === 0 && !loading ?
         <p className='text-center text-2xl font-semibold'>Aucun résultat</p>
         :

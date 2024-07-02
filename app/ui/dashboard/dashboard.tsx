@@ -10,7 +10,6 @@ import { useState } from "react";
 export default function Dashboard(){
 
     const [search, setSearch] = useState("");
-    const [filter, setFilter] = useState("all-games");
 
     return (
         <div className="bg-white px-3 sm:px-8 py-5 w-full">
@@ -25,8 +24,7 @@ export default function Dashboard(){
                 <Search setSearch={setSearch}/>
             </div>
             <div className="flex flex-col gap-5">
-                <Filter setFilter={setFilter} />
-                <GameCardContainer search={search} filter={filter} />
+                <GameCardContainer search={search} />
             </div>
         </div>
     )
