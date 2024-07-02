@@ -16,16 +16,17 @@ export default function Home() {
            width={40}
            height={40}
            alt="Mario coin loading"
+           unoptimized
        />
       </main>
     );
   }
 
   return (
-    <main className="flex justify-center">
+    <>
       {session ? 
-      <main className="flex justify-center"><Dashboard /></main> 
+      <main className="mx-auto max-w-[65em]"><Dashboard /></main> 
       : <main className="h-screen flex justify-center items-center"><Login /></main> }
-    </main>
+    </>
   );
 }

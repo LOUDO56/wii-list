@@ -1,18 +1,20 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 import { AddRemButton } from '../buttons/addRemButton'
-import { State } from './state'
 import { WishButton } from '../buttons/wishButton'
+import { State } from './state'
+import dateFormat from 'dateformat'
+
 
 export const GameCard = (props: any) => {
 
   const [showFullDescription, setShowFullDescription] = useState(false);
   const [gameOnList, setGameOnList] = useState(props.owned);
   const [gameOnWish, setGameOnWish] = useState(props.wish);
-  const [wished, setWished] = useState(false);
+  const [ownedWhen, setOwnedWhen] = useState(dateFormat(new Date(props.owned_when), 'dd/mm/yy à HH:MM'));
 
   let synopsis = props.synopsis
-  const maxCharacterDesc = 430;
+  const maxCharacterDesc = 300;
 
   synopsis = synopsis.replaceAll("\\n", "\n");
   synopsis = synopsis.replaceAll("\\r", "");
@@ -23,7 +25,10 @@ export const GameCard = (props: any) => {
   }
 
   return (
-    <div className='flex flex-col sm:flex-row gap-5 shadow-lg border border-gray-200 p-5 w-full rounded-xl'>
+    <div
+        className='flex flex-col sm:flex-row gap-5 shadow-lg border border-gray-200 p-5 rounded-xl bg-white' 
+        id={props.id}
+    >
         <div className='sm:block flex justify-center'>
             <Image 
                 src={`/images/covers/${props.id}.png`}
@@ -35,9 +40,9 @@ export const GameCard = (props: any) => {
         </div>
         <div className="flex flex-col gap-5 w-full">
             <div className="flex flex-col sm:flex-row justify-between">
-                <h3 className="font-bold text-xl sm:text-2xl w-[37rem]">{ props.title }</h3>
+                <h3 className="font-bold text-xl sm:text-2xl w-auto sm:max-w-[37rem]">{ props.title }</h3>
                 <div className="flex flex-col gap-1 font-bold my-3 sm:my-0">
-                    <p className='text-lg sm:text-xl'>Dans la collection</p>
+                    <p className='text-lg sm:text-xl text-left sm:text-right'>Dans la collection</p>
                     <p className='self-start sm:self-end'>{gameOnList ? <State status="yes" /> : <State status="no" />}</p>
                 </div>
             </div>
@@ -51,7 +56,13 @@ export const GameCard = (props: any) => {
                 <p>{ synopsis }</p>
                 { synopsis.length >= maxCharacterDesc ?
                 <span 
-                    onClick={() => setShowFullDescription((prevState) => !prevState)} 
+                    onClick={() => {
+                        setShowFullDescription((prevState) => !prevState);
+                        if(showFullDescription && synopsis.length >= maxCharacterDesc + 500){
+                            const gameCard = document.getElementById(props.id) as HTMLElement;
+                            gameCard.scrollIntoView(true);
+                        }
+                    }} 
                     className="text-blue-400 hover:underline cursor-pointer">
                         { showFullDescription ? "Voir moins": "Voir plus" }
                 </span>
@@ -60,18 +71,34 @@ export const GameCard = (props: any) => {
             }
             </div>
             <hr />
-            <div className="flex gap-3 justify-end">
-                <WishButton 
-                    type={gameOnWish ? "remove" : "add"}
-                    gameId={props.id} 
-                    handleClick={() => { setGameOnWish(!gameOnWish) }}
-                /> 
-                <AddRemButton 
-                    type={gameOnList ? "remove" : "add"}
-                    gameId={props.id}
-                    handleClick={() => { setGameOnList(!gameOnList) }}
-                    removeWish={() => { setGameOnWish(false) }}
-                /> 
+            <div className="flex justify-between">
+                <div className='text-gray-400'>
+                    {gameOnList ? `Ajouté le: ${ownedWhen}` : ""}
+                </div>
+                <div className='flex gap-3'>
+                    {!gameOnList ?  
+                        <WishButton 
+                            type={gameOnWish ? "remove" : "add"}
+                            gameId={props.id} 
+                            handleClick={() => { setGameOnWish(!gameOnWish) }}
+                            games={props.games}
+                            index={props.index}
+                        /> 
+                        :
+                        ""
+                    }
+                    <AddRemButton 
+                        type={gameOnList ? "remove" : "add"}
+                        gameId={props.id}
+                        handleClick={() => { 
+                            setGameOnList(!gameOnList)
+                            setOwnedWhen(dateFormat(new Date(), 'dd/mm/yy à HH:MM'))
+                        }}
+                        removeWish={() => { setGameOnWish(false) }}
+                        games={props.games}
+                        index={props.index}
+                    /> 
+                </div>
 
             </div>
         </div>

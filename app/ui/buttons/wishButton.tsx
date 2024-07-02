@@ -20,9 +20,10 @@ export const WishButton = (props : any) => {
     if(res.ok){
       props.handleClick();
       setWished(toAdd);
+      props.games[props.index].wish = toAdd
     }
   }
-  
+
   return (
     <button className='button' onClick={actionGameWish}>
         {icon}

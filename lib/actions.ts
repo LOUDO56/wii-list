@@ -14,7 +14,8 @@ export async function addGame(gameId: string) {
             id: gameId
         },
         data: {
-            owned: true
+            owned: true,
+            owned_when: new Date()
         }
     })
 }
@@ -25,7 +26,8 @@ export async function removeGame(gameId: string) {
             id: gameId
         },
         data: {
-            owned: false
+            owned: false,
+            owned_when: null,
         }
     })
 }
