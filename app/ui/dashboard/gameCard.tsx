@@ -53,7 +53,13 @@ export const GameCard = (props: any) => {
                 <p>{ synopsis }</p>
                 { synopsis.length >= maxCharacterDesc ?
                 <span 
-                    onClick={() => setShowFullDescription((prevState) => !prevState)} 
+                    onClick={() => {
+                        setShowFullDescription((prevState) => !prevState);
+                        if(showFullDescription && synopsis.length >= maxCharacterDesc + 500){
+                            const gameCard = document.getElementById(props.id) as HTMLElement;
+                            gameCard.scrollIntoView(true);
+                        }
+                    }} 
                     className="text-blue-400 hover:underline cursor-pointer">
                         { showFullDescription ? "Voir moins": "Voir plus" }
                 </span>
