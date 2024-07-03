@@ -89,12 +89,18 @@ export const GameCardContainer = ({search}) => {
   }
   
   function PaginatedItems({ itemsPerPage }) {
-    const [itemOffset, setItemOffset] = useState(0);
+    const currentPage = sessionStorage.getItem('currentPage');
+    let defaultItemOffset = 0;
+    if(currentPage !== null){
+      defaultItemOffset = (currentPage * itemsPerPage) % games.length
+    }
+    const [itemOffset, setItemOffset] = useState(defaultItemOffset);
     const endOffset = itemOffset + itemsPerPage;
     const currentItems = games.slice(itemOffset, endOffset);
     const pageCount = Math.ceil(games.length / itemsPerPage);
     const handlePageClick = (event) => {
       const newOffset = (event.selected * itemsPerPage) % games.length;
+      sessionStorage.setItem("currentPage", event.selected)
       setItemOffset(newOffset);
     };
   
@@ -104,6 +110,7 @@ export const GameCardContainer = ({search}) => {
         <ReactPaginate
             breakLabel="..."
             nextLabel={<MdArrowForwardIos size={20} />}
+            initialPage={+sessionStorage.getItem('currentPage')}
             onPageChange={handlePageClick}
             pageRangeDisplayed={onMobile ? 2 : 5}
             marginPagesDisplayed={onMobile ? 1 : 2}
