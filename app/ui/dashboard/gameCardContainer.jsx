@@ -11,6 +11,7 @@ import clsx from 'clsx';
 export const GameCardContainer = ({search}) => {
 
   let [games, setGames] = useState([]);
+  let [firstLoad, setFirstLoad] = useState(true);
   const [loading, setLoading] = useState(true);
 
   const onMobile = window.innerWidth < 658;
@@ -29,7 +30,7 @@ export const GameCardContainer = ({search}) => {
     )
   })
 
-  if(games.length === 0) document.body.classList.add('overflow-hidden');
+  if(games.length === 0 && !firstLoad) document.body.classList.add('overflow-hidden');
   else document.body.classList.remove('overflow-hidden')
 
   const maxGameOnePage = onMobile ? 7 : 10;
@@ -48,6 +49,7 @@ export const GameCardContainer = ({search}) => {
           console.log("Error when fetching games" + error);
       } finally {
           setLoading(false);
+          setFirstLoad(false)
       }
   }
 

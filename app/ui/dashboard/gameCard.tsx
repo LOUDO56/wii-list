@@ -73,7 +73,7 @@ export const GameCard = (props: any) => {
             <hr />
             <div className="flex justify-between">
                 <div className='text-gray-400'>
-                    {gameOnList ? `Ajouté le: ${ownedWhen}` : ""}
+                    {gameOnList && ownedWhen !== "01/01/70 à 01:00" ? `Ajouté le: ${ownedWhen}` : ""}
                 </div>
                 <div className='flex gap-3'>
                     {!gameOnList ?  
