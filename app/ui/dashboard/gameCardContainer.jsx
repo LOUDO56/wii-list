@@ -108,27 +108,30 @@ export const GameCardContainer = ({search}) => {
   
     return (
       <>
-        <Items currentItems={currentItems} />    
-        <ReactPaginate
-            breakLabel="..."
-            nextLabel={<MdArrowForwardIos size={20} />}
-            initialPage={+sessionStorage.getItem('currentPage')}
-            onPageChange={handlePageClick}
-            pageRangeDisplayed={onMobile ? 2 : 5}
-            marginPagesDisplayed={onMobile ? 1 : 2}
-            pageCount={pageCount}
-            previousLabel={<MdArrowBackIos size={20} />}
-            renderOnZeroPageCount={null}
-            className='flex flex-wrap gap-2 justify-center items-center sm:p-2 p-5 bg-white border border-gray-300 rounded-xl w-full text-base sm:text-lg'
-            pageLinkClassName='px-2 sm:px-5 py-2 bg-gray-100 rounded-lg'
-            breakLinkClassName='px-2 sm:px-5 py-2 bg-gray-100 rounded-lg'
-            nextClassName='p-1 sm:p-5'
-            previousClassName='p-1 sm:p-5'
-            nextClassLinkName='p-1 sm:p-5'
-            previousClassLinkName='p-1 sm:p-5'
-            activeLinkClassName='text-white !bg-black'
-            onClick={() => window.scrollTo({top: 0})}
-        />
+        <Items currentItems={currentItems} />   
+        {!loading ? 
+          <ReactPaginate
+              breakLabel="..."
+              nextLabel={<MdArrowForwardIos size={20} />}
+              initialPage={+sessionStorage.getItem('currentPage')}
+              onPageChange={handlePageClick}
+              pageRangeDisplayed={onMobile ? 2 : 5}
+              marginPagesDisplayed={onMobile ? 1 : 2}
+              pageCount={pageCount}
+              previousLabel={<MdArrowBackIos size={20} />}
+              renderOnZeroPageCount={null}
+              className='flex flex-wrap gap-2 justify-center items-center sm:p-2 p-5 bg-white border border-gray-300 rounded-xl w-full text-base sm:text-lg'
+              pageLinkClassName='px-2 sm:px-5 py-2 bg-gray-100 rounded-lg'
+              breakLinkClassName='px-2 sm:px-5 py-2 bg-gray-100 rounded-lg'
+              nextClassName='p-1 sm:p-5'
+              previousClassName='p-1 sm:p-5'
+              nextClassLinkName='p-1 sm:p-5'
+              previousClassLinkName='p-1 sm:p-5'
+              activeLinkClassName='text-white !bg-black'
+              onClick={() => window.scrollTo({top: 0})}
+          />
+          :
+          ""} 
       </>
     );
   }
