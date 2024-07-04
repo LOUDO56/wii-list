@@ -15,13 +15,14 @@ export default function Login() {
 
     async function handleFormSubmit(e : any) {
       e.preventDefault();
-      setLoading(true);
       const formData = new FormData(e.currentTarget);
   
       if(formData.get('password') === "") {
           setError('Champ du mot de passe vide.');
           return;
       }
+
+      setLoading(true);
   
       const result = await signIn('credentials', {
         password: formData.get('password'),
