@@ -138,7 +138,7 @@ export const GameCardContainer = ({search}) => {
     <div className={clsx(
       'flex flex-col gap-10 w-full',
       {
-        'h-screen': games.length === 0
+        'h-screen': games.length === 0 && !firstLoad
       }
     )}>
        <Filter fetchGames={fetchGames} />
